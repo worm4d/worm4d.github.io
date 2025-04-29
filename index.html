@@ -1,34 +1,43 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-	<title>Test page; dont panic</title>
-	<meta charset="utf-8">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Telegram Mini App Login</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<h1>i am an h1</h1>
-<ul>
-	<li>
-		<a href="fb.com" style="color: red; ">FB</a>
-	</li>
-	<li>
-		<a href="twitter.com" style="color: red;">Twitter</a>
-	</li>
-	<li>
-		<a href="myspace.com" style="color: red;">Myspace</a>
-	</li>
-</ul>
-<h2>I am an h2</h2>
-<div style="border: 1px black solid;">
-	<a href="example.com" style="color: green;">I am a testing link</a>
-</div>
-<div style="border: 1px solid black;">
-      <a href="http://example.com/" style="color: green;">I'm a link</a>
+    <div class="container">
+        <h1>Login</h1>
+        <div id="login-form">
+            <div class="input-group">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+            <div class="input-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <button id="login-button">Login</button>
+            <p id="login-error" class="error-message"></p>
+        </div>
+        <div id="app-content" class="hidden">
+            <h2>Welcome, <span id="username-display"></span>!</h2>
+            <p>You have successfully logged in via Telegram Mini App.</p>
+            <button id="send-user-info">Send User Info to Bot</button>
+        </div>
     </div>
-    <div style="border: 1px solid black;">
-      <a href="http://example.com/" style="color: green;">I'm a link</a>
-    </div>
-    <div style="border: 1px solid black;">
-      <a href="http://example.com/" style="color: green;">I'm a link</a>
-    </div>
+
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <script src="script.js"></script>
+    <script>
+        const tg = window.Telegram.WebApp;
+        tg.expand(); // Expand the Mini App to full viewport initially
+
+        // Handle theme changes
+        tg.onEvent('themeChanged', function() {
+            document.body.className = tg.colorScheme;
+        });
+    </script>
 </body>
 </html>
